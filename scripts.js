@@ -5,8 +5,7 @@ import {createClient} from
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
 // Fetch data from the table
-async function fetchData() {
-     const nameToSearch = document.querySelector('#name').value;
+async function fetchData(nameToSearch) {
 
     // Query the database for the name
     const { data, error } = await supabase
@@ -37,5 +36,14 @@ document.getElementById('submitbutton1').addEventListener('click', function() {
     
     if((driverName==="" && licenseNumber==="") || (driverName!=="" && licenseNumber!=="")){
         document.getElementById('message').textContent = "Error";
+    }
+    else if(driverName!==""){
+         const nameToSearch = document.querySelector('#name').value;
+         fetchData(nameToSearch);
+    }
+    else{
+        const nameToSearch = document.querySelector('#license').value;
+         fetchData(nameToSearch);
+    }
     }
 });
