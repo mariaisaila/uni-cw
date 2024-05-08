@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8" />
+        <title>Add a Vehicle</title>
+        <link rel="stylesheet" href="style.css"> 
+        <script src="scripts.js" type="module"></script> 
+    </head>
+    <body>
+        <div class="container">
+            <header class="box1">
+                <link rel="stylesheet" href="style.css">
+                <h1>Add a Vehicle</h1>
+                <ul class="flex-container">
+                    <li class="flex-item"><a href="peoplesearch.html">People Search</a></li>
+                    <li class="flex-item"><a href="vehiclesearch.html">Vehicle Search</a></li>
+                    <li class="flex-item"><a href="addvehicle.html">Add a Vehicle</a></li>
+                </ul>
+            </header>
+            <main class="box2">
+                <form>
+                    <p><label>Vehicle registration/plate number</label> <input type="text" id="rego"></p>
+                    <p><label>Vehicle make</label> <input type="text" id="make"></p>
+                    <p><label>Vehicle model</label><input type="text" id="model"></p>
+                    <p><label>Vehicle colour</label> <input type="text" id="colour"></p>
+                    <p><label>Vehicle owner </label><input type="text" id="owner"></p>
+                    <button type="button" >Add vehicle</button></br>
+                </form>
+                <form>
+                    <p><label>ID </label><input type="text" id="peersonid"></p>
+                    <p><label>Owner name</label> <input type="text" id="name"></p>
+                    <p><labe>Owner address</labe> <input type="text" id="address"></p>
+                    <p><label>Owner date of birth</label> <input type="text" id="dob"></p>
+                    <p><label>Owner's license number </label><input type="text" id="license"></p>
+                    <p><label>Owner's license expiring date </label><input type="text" id="expire"></p>
+                    <button type="button" >Add owner</button></br>
+                </form>
+                <p id="message" >Vehicle added successfully</p>
+            </main>
+            <aside class="box3">
+                <img src="img/addcar.png" width="70px"> <!--I added a width property here to resize the image quickly withought needing to move it to the style sheet-->
+            </aside>
+            <footer class="box4">
+
+            </footer>
+        </div>
+    </body>
+</html>

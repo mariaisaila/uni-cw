@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8" />
+        <title>Vehicle Search</title>
+        <link rel="stylesheet" href="style.css">  
+        <script src="scripts.js" type="module"></script>
+    </head>
+    <body>
+        <div class="container">
+            <header class="box1">
+           
+                <h1>Vehicle Search</h1>
+                <ul class="flex-container">
+                    <li class="flex-item"><a href="peoplesearch.html">People Search</a></li>
+                    <li class="flex-item"><a href="vehiclesearch.html">Vehicle Search</a></li>
+                    <li class="flex-item"><a href="addvehicle.html">Add a Vehicle</a></li>
+                </ul>
+                
+            </header>
+            <main class="box2">
+                <form>
+                <p><label>Search by vehicle registration/plate number</label> <input type="text" id="rego"></p>
+                <button type="button" >Submit</button></br>
+                </form>
+                <p id="message" >Search Succesful</p>
+                <div id="results">
+                    <div class="searchresult">
+                        <p>personid: 1</p>
+                        <p>name: Rachel Smith</p>
+                        <p>address: Wollaton</p>
+                        <p>dob: 1979-06-05</p>
+                        <p>licensenumber: SG345PQ</p>
+                        <p>expirydate: 2020-05-05</p>
+                    </div>
+                </div>
+            </main>
+            <aside class="box3">
+                <img src="img/car1.png" width="70px"> <!--I added a width property here to resize the image quickly withought needing to move it to the style sheet-->
+            </aside>
+            <footer class="box4">
+    
+            </footer>
+        </div>
+    </body>
+</html>
