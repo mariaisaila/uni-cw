@@ -32,8 +32,8 @@ document.getElementById('submitbutton1').addEventListener('click', function() {
     if ((driverName === "" && licenseNumber === "") || (driverName !== "" && licenseNumber !== "")) {
         document.getElementById('message').textContent = "Please enter either a name or a license number, not both.";
     } else if (driverName !== "") {
-        fetchData(driverName, 'name');
+        fetchData(driverName, 'Name');
     } else {
-        fetchData(licenseNumber, 'license_number'); // assuming the field is 'license_number'
+        fetchData(licenseNumber, 'LicenseNumber'); // assuming the field is 'license_number'
     }
 });
