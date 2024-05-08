@@ -46,6 +46,6 @@ document.getElementById('submitbutton2').addEventListener('click', function() {
         document.getElementById('message').textContent = "Error";
     }
     else {
-        fetchData(plateNumber, 'VehicleID', 'Vehicle'); 
+        fetchData(plateNumber, 'VehicleID', 'Vehicles'); 
     }
 });
