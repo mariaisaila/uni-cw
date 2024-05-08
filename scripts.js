@@ -4,46 +4,36 @@ import {createClient} from
 // Initialize the client with your Supabase project URL and API key
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
-// Fetch data from the table
-async function fetchData(nameToSearch) {
-
-    // Query the database for the name
+async function fetchData(searchValue, searchField) {
+    // Query the database for the name or license number
     const { data, error } = await supabase
         .from('People')
         .select()
-        .ilike('name', `%${nameToSearch}%`);
+        .ilike(searchField, `%${searchValue}%`);
 
     if (error) {
         console.error('Error fetching data:', error);
-        document.getElementById('message').textContent = "No result found";
+        document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
         return;
-    }
-    else{
-        document.getElementById('message').textContent = "Search Succesful";
+    } else if (data.length === 0) {
+        document.getElementById('message').textContent = "No result found";
+    } else {
+        document.getElementById('message').textContent = "Search Successful";
     }
 }
 
-// Call the fetchData function to retrieve data
-//document.querySelector('#button1').addEventListener('click', fetchData);
-
 document.getElementById('submitbutton1').addEventListener('click', function() {
-
-    var driverName = document.getElementById('name').value;
-    var licenseNumber = document.getElementById('license').value;
+    var driverName = document.getElementById('name').value.trim();
+    var licenseNumber = document.getElementById('license').value.trim();
 
     console.log("Driver's Name:", driverName);
     console.log("License Number:", licenseNumber);
-    
-    if((driverName==="" && licenseNumber==="") || (driverName!=="" && licenseNumber!=="")){
-        document.getElementById('message').textContent = "Error";
-    }
-    else if(driverName!==""){
-         const nameToSearch = document.querySelector('#name').value;
-         fetchData(nameToSearch);
-    }
-    else{
-        const nameToSearch = document.querySelector('#license').value;
-         fetchData(nameToSearch);
-    }
+
+    if ((driverName === "" && licenseNumber === "") || (driverName !== "" && licenseNumber !== "")) {
+        document.getElementById('message').textContent = "Please enter either a name or a license number, not both.";
+    } else if (driverName !== "") {
+        fetchData(driverName, 'name');
+    } else {
+        fetchData(licenseNumber, 'license_number'); // assuming the field is 'license_number'
     }
 });
