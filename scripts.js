@@ -4,15 +4,14 @@ import {createClient} from
 // Initialize the client with your Supabase project URL and API key
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
-async function fetchData(searchValue, searchField) {
+async function fetchData(searchValue, searchField, searchTable) {
     const { data, error } = await supabase
-        .from('People')
+        .from(searchTable)
         .select()
         .ilike(searchField, `%${searchValue}%`);
     if (error) {
         console.error('Error fetching data:', error);
         document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
-        console.log("and oh no i'm here");
         return;
     } else if (data.length === 0) {
         document.getElementById('message').textContent = "No result found";
@@ -32,8 +31,21 @@ document.getElementById('submitbutton1').addEventListener('click', function() {
         document.getElementById('message').textContent = "Error";
     } else if (driverName !== "") {
         console.log("i'm here");
-        fetchData(driverName, 'Name');
+        fetchData(driverName, 'Name', 'People');
     } else {
-        fetchData(licenseNumber, 'LicenseNumber'); 
+        fetchData(licenseNumber, 'LicenseNumber', 'People'); 
+    }
+});
+
+document.getElementById('submitbutton2').addEventListener('click', function() {
+    var plateNumber = document.getElementById('rego').value.trim();
+
+    console.log("Plate number:", plateNumber);
+
+    if (plateNumber === "" ) {
+        document.getElementById('message').textContent = "Error";
+    }
+    else {
+        fetchData(plateNumber, 'VehicleID', 'Vehicle'); 
     }
 });
