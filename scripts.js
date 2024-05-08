@@ -5,13 +5,10 @@ import {createClient} from
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
 async function fetchData(searchValue, searchField) {
-    // Query the database for the name or license number
-    console.log("and here");
     const { data, error } = await supabase
         .from('People')
         .select()
         .ilike(searchField, `%${searchValue}%`);
-    console.log("and here here");
     if (error) {
         console.error('Error fetching data:', error);
         document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
@@ -32,11 +29,11 @@ document.getElementById('submitbutton1').addEventListener('click', function() {
     console.log("License Number:", licenseNumber);
 
     if ((driverName === "" && licenseNumber === "") || (driverName !== "" && licenseNumber !== "")) {
-        document.getElementById('message').textContent = "Please enter either a name or a license number, not both.";
+        document.getElementById('message').textContent = "Error";
     } else if (driverName !== "") {
         console.log("i'm here");
         fetchData(driverName, 'Name');
     } else {
-        fetchData(licenseNumber, 'LicenseNumber'); // assuming the field is 'license_number'
+        fetchData(licenseNumber, 'LicenseNumber'); 
     }
 });
