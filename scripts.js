@@ -37,15 +37,21 @@ document.getElementById('submitbutton1').addEventListener('click', function() {
     }
 });
 
-document.getElementById('submitbutton2').addEventListener('click', function() {
-    var plateNumber = document.getElementById('rego').value.trim();
+document.addEventListener('DOMContentLoaded', function() {
+    var submitBtn = document.getElementById('submitbutton2');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+            var plateNumber = document.getElementById('rego').value.trim();
+            console.log("Plate number:", plateNumber);
 
-    console.log("Plate number:", plateNumber);
-
-    if (plateNumber === "" ) {
-        document.getElementById('message').textContent = "Error";
-    }
-    else {
-        fetchData(plateNumber, 'VehicleID', 'Vehicles'); 
+            if (plateNumber === "") {
+                document.getElementById('message').textContent = "Error";
+            }
+            else {
+                fetchData(plateNumber, 'VehicleID', 'Vehicles'); 
+            }
+        });
+    } else {
+        console.log('The element with ID "submitbutton2" was not found.');
     }
 });
