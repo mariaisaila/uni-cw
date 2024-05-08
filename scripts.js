@@ -1,4 +1,4 @@
-/*import {createClient} from 
+import {createClient} from 
     'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 // Initialize the client with your Supabase project URL and API key
@@ -6,12 +6,26 @@ const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbG
 
 // Fetch data from the table
 async function fetchData() {
-    const { data, error } = await supabase.from('People').select();
-    console.log('Fetched data:', data);
+     const nameToSearch = document.querySelector('#name').value;
+
+    // Query the database for the name
+    const { data, error } = await supabase
+        .from('People')
+        .select()
+        .ilike('name', `%${nameToSearch}%`);
+
+    if (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById('message').textContent = "No result found";
+        return;
+    }
+    else{
+        document.getElementById('message').textContent = "Search Succesful";
+    }
 }
 
 // Call the fetchData function to retrieve data
-document.querySelector('#button1').addEventListener('click', fetchData);*/
+//document.querySelector('#button1').addEventListener('click', fetchData);
 
 document.getElementById('submitbutton1').addEventListener('click', function() {
 
@@ -23,9 +37,5 @@ document.getElementById('submitbutton1').addEventListener('click', function() {
     
     if((driverName==="" && licenseNumber==="") || (driverName!=="" && licenseNumber!=="")){
         document.getElementById('message').textContent = "Error";
-    }
-    else{
-        document.getElementById('message').textContent = "Search Succesful";
-        document.getElementById('message').textContent = "No result found";
     }
 });
