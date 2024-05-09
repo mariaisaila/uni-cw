@@ -20,20 +20,27 @@ async function fetchData(searchValue, searchField, searchTable) {
     }
 }
 
-document.getElementById('submitbutton1').addEventListener('click', function() {
-    var driverName = document.getElementById('name').value.trim();
-    var licenseNumber = document.getElementById('license').value.trim();
-
-    console.log("Driver's Name:", driverName);
-    console.log("License Number:", licenseNumber);
-
-    if ((driverName === "" && licenseNumber === "") || (driverName !== "" && licenseNumber !== "")) {
-        document.getElementById('message').textContent = "Error";
-    } else if (driverName !== "") {
-        console.log("i'm here");
-        fetchData(driverName, 'Name', 'People');
+document.addEventListener('DOMContentLoaded', function() {
+    var submitBtn = document.getElementById('submitbutton1');
+    if (submitBtn) {
+    document.getElementById('submitbutton1').addEventListener('click', function() {
+        var driverName = document.getElementById('name').value.trim();
+        var licenseNumber = document.getElementById('license').value.trim();
+    
+        console.log("Driver's Name:", driverName);
+        console.log("License Number:", licenseNumber);
+    
+        if ((driverName === "" && licenseNumber === "") || (driverName !== "" && licenseNumber !== "")) {
+            document.getElementById('message').textContent = "Error";
+        } else if (driverName !== "") {
+            console.log("i'm here");
+            fetchData(driverName, 'Name', 'People');
+        } else {
+            fetchData(licenseNumber, 'LicenseNumber', 'People'); 
+        }
+    });
     } else {
-        fetchData(licenseNumber, 'LicenseNumber', 'People'); 
+        console.log('The element with ID "submitbutton1" was not found.');
     }
 });
 
