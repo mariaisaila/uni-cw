@@ -114,8 +114,8 @@ async function fetchData(searchValue, searchField, searchTable) {
                 item5 = item.OwnerID;
                 if (!item5) {
                     console.error("OwnerID is undefined or null for item index:", i);
-                    item6 = "NULL"; 
-                    item7 = "NULL";
+                    item6 = "null"; 
+                    item7 = "null";
                 }
                 else{
                     const ownerIds = [item5]; 
@@ -134,14 +134,32 @@ async function fetchData(searchValue, searchField, searchTable) {
                         item6 = peopleData[0].Name;
                         item7 = peopleData[0].LicenseNumber;
                     } else {
-                        item6 = "NULL"; 
-                        item7 = "NULL";
+                        item6 = "null"; 
+                        item7 = "null";
                     }
                 }
             }
             addNewDiv(searchTable, item1, item2, item3, item4, item5, item6, item7);
         }
         document.getElementById('message').textContent = "Search Successful";
+    }
+}
+
+async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
+    const { data, error } = await supabase
+            .from(People)
+            .select()
+            .ilike(PeopleID, `%${searchValue}%`);
+    if (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
+        return;
+    } else if (data.length === 0) {
+        document.getElementById('message').textContent = "No result found";
+    } else {
+        const { error } = await supabase.from('students')
+            .insert({ VehicleID: plateNumber, Make: vehicleMake, Model: vehicleModel, Colour: vehicleColour, OwnerID: searchValue})
+        document.getElementById('message').textContent = "Vehicle added successfully";
     }
 }
 
@@ -189,4 +207,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var submitBtn = document.getElementById('submitbutton3');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+            var plateNumber = document.getElementById('rego').value.trim();
+            var vehicleMake = document.getElementById('make').value.trim();
+            var vehicleModel = document.getElementById('model').value.trim();
+            var vehicleColour = document.getElementById('colour').value.trim();
+            var vehicleOwner = document.getElementById('owner').value.trim();
+            console.log("Plate number:", plateNumber);
+            console.log("Vehicle Make:", vehicleMake);
+            console.log("Vehicle Model:", vehicleModel);
+            console.log("Vehicle Colour:", vehicleColour);
+            console.log("Vehicle Owner:", vehicleOwner);
+            
+            if (plateNumber === "" || vehicleMake === "" || vehicleModel === "" || vehicleColour === "" || vehicleOwner === "") {
+                document.getElementById('message').textContent = "Error";
+            }
+            else {
+                searchOwner(vehicleOwner, plateNumber, vehicleMake, vehicleModel, vehicleColour); 
+            }
+        });
+    } else {
+        console.log('The element with ID "submitbutton3" was not found.');
+    }
+});
 
