@@ -5,13 +5,13 @@ import {createClient} from
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
 function toggleVisibilityByClass() {
-    var elements = document.querySelectorAll('.' + searchresult);
+    var elements = document.querySelectorAll('.searchresult');
     if (elements.length > 0) {
         elements.forEach(function(element) {
             element.style.display = 'none';
-    });
+        });
     } else {
-        console.log("No elements found with the class " + className);
+        console.log("No elements found with the class searchresult");
     }
 }
 
