@@ -182,7 +182,7 @@ async function searchOwner() {
                 Make: vehicleMake,
                 Model: vehicleModel,
                 Colour: vehicleColour,
-                OwnerID: data.PersonID
+                OwnerID: data.PeopleID
             }));
 
     if (insertError) {
