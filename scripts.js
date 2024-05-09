@@ -157,7 +157,7 @@ async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, 
     } else if (data.length === 0) {
         document.getElementById('message').textContent = "No result found";
     } else {
-        const { error } = await supabase.from('students')
+        const { error } = await supabase.from('People')
             .insert({ VehicleID: plateNumber, Make: vehicleMake, Model: vehicleModel, Colour: vehicleColour, OwnerID: searchValue})
         document.getElementById('message').textContent = "Vehicle added successfully";
     }
@@ -233,4 +233,3 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('The element with ID "submitbutton3" was not found.');
     }
 });
-/*ok*/
