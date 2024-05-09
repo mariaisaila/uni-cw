@@ -161,6 +161,15 @@ async function searchOwner() {
 
     if (data.length === 0) {
         var form = document.querySelector('.form2');
+        form.innerHTML = `
+            <p><label for="personid">ID </label><input type="text" id="personid"></p>
+            <p><label for="name">Owner name</label> <input type="text" id="name"></p>
+            <p><label for="address">Owner address</label> <input type="text" id="address"></p>
+            <p><label for="dob">Owner date of birth</label> <input type="text" id="dob"></p>
+            <p><label for="license">Owner's license number </label><input type="text" id="license"></p>
+            <p><label for="expire">Owner's license expiring date </label><input type="text" id="expire"></p>
+            <button type="button" id="submitbutton4">Add owner</button></br>
+        `;
         form.style.display = 'block';
         return;
     }
@@ -180,6 +189,7 @@ async function searchOwner() {
         document.getElementById('message').textContent = "Error adding vehicle, please check console for details.";
     } else {
         var form = document.querySelector('.form2');
+        form.innerHTML = ""; 
         form.style.display = 'none';
         document.getElementById('message').textContent = "Vehicle added successfully";
     }
