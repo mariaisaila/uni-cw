@@ -243,9 +243,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (plateNumber === "" || vehicleMake === "" || vehicleModel === "" || vehicleColour === "" || vehicleOwner === "") {
                 document.getElementById('message').textContent = "Error";
             }
-            else {
+            /*else {
                 searchOwner(vehicleOwner, plateNumber, vehicleMake, vehicleModel, vehicleColour); 
-            }
+            }*/
         });
     } else {
         console.log('The element with ID "submitbutton3" was not found.');
