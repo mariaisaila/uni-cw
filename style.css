@@ -58,6 +58,14 @@ header, main, aside, footer {
     margin-bottom: 5px;
 }
 
+.form2{
+    display: none;
+}
+
+img{
+    width: 70px;
+}
+
 @media (max-width: 500px) {
     .box2{
         grid-column: 1/-1;
