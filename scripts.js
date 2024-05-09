@@ -158,7 +158,9 @@ async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, 
     }
 
     if (data.length === 0) {
-        document.getElementById('message').textContent = "No result found";
+        var form = document.querySelector('.form2');
+        form.style.display = 'block';
+        console.log('Found no owner');
         return;
     }
 
