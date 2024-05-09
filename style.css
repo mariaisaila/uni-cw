@@ -17,28 +17,28 @@ header, main, aside, footer {
     margin: 10px;
     padding: 10px;
 }
-.container{
+#container{
     display: grid;
     grid-template-columns: 1fr 4fr; 
     grid-template-rows: auto 1fr auto; 
     gap: 5px;
     height: 100vh;
 }
-.box1 {
+#box1 {
     grid-column: 1 / -1; 
     grid-row: 1;
 }
-.box2 {
+#box2 {
     grid-column: 2;
     grid-row: 2;
     display: flex;
     flex-direction: column;
 }
-.box3 {
+#box3 {
     grid-column: 1;
     grid-row: 2;
 }
-.box4 {
+#box4 {
     grid-column: 1 / -1; 
     grid-row: 3;
 }
@@ -70,14 +70,14 @@ img{
 }
 
 @media (max-width: 500px) {
-    .box2{
+    #box2{
         grid-column: 1/-1;
     }
-    .box3 {
+    #box3 {
         grid-row: 3;
     }
 
-    .box4 {
+    #box4 {
         grid-column: 2; 
     }
     .flex-container {
