@@ -4,6 +4,8 @@ import {createClient} from
 // Initialize the client with your Supabase project URL and API key
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
+let plateNumber, vehicleMake, vehicleModel, vehicleColour, vehicleOwner;
+
 function toggleVisibilityByClass() {
     var elements = document.querySelectorAll('.searchresult');
     if (elements.length > 0) {
@@ -111,8 +113,8 @@ async function fetchData(searchValue, searchField, searchTable) {
                 item2 = item.Make;
                 item3 = item.Model;
                 item4 = item.Colour;
-                item5 = item.OwnerID;
-                if (!item5) {
+                item5 = item.OwnerID || "null";
+                if (item5==="null") {
                     console.error("OwnerID is undefined or null for item index:", i);
                     item6 = "null"; 
                     item7 = "null";
@@ -145,12 +147,12 @@ async function fetchData(searchValue, searchField, searchTable) {
     }
 }
 
-async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
+async function searchOwner() {
     let data, error;
     ({ data, error } = await supabase
             .from('People')
             .select()
-            .eq('PeopleID', searchValue));
+            .eq('PeopleID', vehicleOwner));
     if (error) {
         console.error('Error fetching data:', error);
         document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
@@ -197,6 +199,7 @@ async function addOwner(personId, ownerName, ownerAddress, ownerDob, ownerLicens
         console.error('Error inserting data:', insertError);
         document.getElementById('message').textContent = "Error adding vehicle, please check console for details.";
     } else {
+        searchOwner();
         return;
     }
 }
@@ -249,11 +252,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var submitBtn = document.getElementById('submitbutton3');
     if (submitBtn) {
         submitBtn.addEventListener('click', function() {
-            var plateNumber = document.getElementById('rego').value.trim();
-            var vehicleMake = document.getElementById('make').value.trim();
-            var vehicleModel = document.getElementById('model').value.trim();
-            var vehicleColour = document.getElementById('colour').value.trim();
-            var vehicleOwner = document.getElementById('owner').value.trim();
+            plateNumber = document.getElementById('rego').value.trim();
+            vehicleMake = document.getElementById('make').value.trim();
+            vehicleModel = document.getElementById('model').value.trim();
+            vehicleColour = document.getElementById('colour').value.trim();
+            vehicleOwner = document.getElementById('owner').value.trim();
             console.log("Plate number:", plateNumber);
             console.log("Vehicle Make:", vehicleMake);
             console.log("Vehicle Model:", vehicleModel);
@@ -264,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('message').textContent = "Error";
             }
             else {
-                searchOwner(vehicleOwner, plateNumber, vehicleMake, vehicleModel, vehicleColour); 
+                searchOwner(); 
             }
         });
     } else {
