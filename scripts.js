@@ -179,6 +179,8 @@ async function searchOwner() {
         console.error('Error inserting data:', insertError);
         document.getElementById('message').textContent = "Error adding vehicle, please check console for details.";
     } else {
+        var form = document.querySelector('.form2');
+        form.style.display = 'none';
         document.getElementById('message').textContent = "Vehicle added successfully";
     }
 }
