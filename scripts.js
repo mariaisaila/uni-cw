@@ -172,7 +172,7 @@ async function searchOwner() {
                 Make: vehicleMake,
                 Model: vehicleModel,
                 Colour: vehicleColour,
-                OwnerID: searchValue
+                OwnerID: vehicleOwner
             }));
 
     if (insertError) {
