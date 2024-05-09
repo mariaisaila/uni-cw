@@ -105,7 +105,7 @@ async function fetchData(searchValue, searchField, searchTable) {
                 item4 = item.DOB;
                 item5 = item.LicenseNumber;
                 item6 = item.ExpiryDate;
-                item7 = "NULL"; 
+                item7 = "null"; 
             } else {
                 item1 = item.VehicleID;
                 item2 = item.Make;
