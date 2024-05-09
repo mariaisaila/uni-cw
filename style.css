@@ -21,7 +21,6 @@ header, main, aside, footer {
     display: grid;
     grid-template-columns: 1fr 4fr; 
     grid-template-rows: auto 1fr auto; 
-    gap: 5px;
     height: 100vh;
 }
 #box1 {
