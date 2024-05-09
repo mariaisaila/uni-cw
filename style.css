@@ -19,7 +19,7 @@ header, main, aside, footer {
 }
 .container{
     display: grid;
-    grid-template-columns: 1fr 14fr; 
+    grid-template-columns: 1fr 4fr; 
     grid-template-rows: auto 1fr auto; 
     gap: 5px;
     height: 100vh;
