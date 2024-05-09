@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
     <head>
         <meta charset="utf-8" />
         <title>Add a Vehicle</title>
@@ -7,8 +7,9 @@
         <script src="scripts.js" type="module"></script> 
     </head>
     <body>
-        <div class="container">
-            <header class="box1">
+        <div id="container">
+            <header id="box1">
+                <link rel="stylesheet" href="style.css">
                 <h1>Add a Vehicle</h1>
                 <ul class="flex-container">
                     <li class="flex-item"><a href="index.html">People Search</a></li>
@@ -16,7 +17,7 @@
                     <li class="flex-item"><a href="addvehicle.html">Add a Vehicle</a></li>
                 </ul>
             </header>
-            <main class="box2">
+            <main id="box2">
                 <form>
                     <p><label for="rego">Vehicle registration/plate number </label> <input type="text" id="rego"></p>
                     <p><label for="make">Vehicle make </label> <input type="text" id="make"></p>
@@ -36,10 +37,10 @@
                 </form>
                 <p id="message" ></p>
             </main>
-            <aside class="box3">
+            <aside id="box3">
                 <img src="img/addcar.png" alt="PNG of New Car"> 
             </aside>
-            <footer class="box4">
+            <footer id="box4">
 
             </footer>
         </div>
