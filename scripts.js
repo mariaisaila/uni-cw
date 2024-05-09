@@ -112,17 +112,25 @@ async function fetchData(searchValue, searchField, searchTable) {
                 item3 = item.Model;
                 item4 = item.Colour;
                 item5 = item.OwnerID;
+                const ownerIds = [item5]; 
+
                 const { data: peopleData, error: peopleError } = await supabase
                     .from('People')
-                    .select('Name, LicenseNumber') 
-                    .in('PeopleID', item5); // Assuming 'peopleid' is the primary key in 'people'
+                    .select('Name, LicenseNumber')
+                    .in('PeopleID', ownerIds);
 
                 if (peopleError) {
                     console.error("Error fetching people:", peopleError);
                     return;
                 }
-                item6 = peopleData[i].Name; 
-                item7 = peopleData[i].LicenseNumber; 
+
+                if (peopleData.length > 0) {
+                    item6 = peopleData[0].Name;
+                    item7 = peopleData[0].LicenseNumber;
+                } else {
+                    item6 = "NULL"; 
+                    item7 = "NULL";
+                }
             }
             addNewDiv(searchTable, item1, item2, item3, item4, item5, item6, item7);
         }
