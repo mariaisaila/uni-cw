@@ -58,7 +58,7 @@ header, main, aside, footer {
     margin-bottom: 5px;
 }
 
-@media only screen and (max-width: 500px) {
+@media (max-width: 500px) {
     
     .container {
         display: grid;
