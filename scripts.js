@@ -152,7 +152,7 @@ async function searchOwner() {
     ({ data, error } = await supabase
             .from('People')
             .select()
-            .eq('PeopleID', vehicleOwner));
+            .eq('Name', `%${vehicleOwner}%`));
     if (error) {
         console.error('Error fetching data:', error);
         document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
@@ -182,7 +182,7 @@ async function searchOwner() {
                 Make: vehicleMake,
                 Model: vehicleModel,
                 Colour: vehicleColour,
-                OwnerID: vehicleOwner
+                OwnerID: data.PersonID
             }));
 
     if (insertError) {
