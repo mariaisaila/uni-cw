@@ -59,27 +59,15 @@ header, main, aside, footer {
 }
 
 @media (max-width: 500px) {
-    
-    .container {
-        display: grid;
-        grid-template-columns: 1fr; /* Single column layout */
-        grid-template-rows: auto auto auto auto; /* Enough auto rows for each element */
+    .box2{
+        grid-column: 1/-1;
     }
-
-    .box1, .box2, .box3, .box4 {
-        grid-column: 1 / -1; 
-        grid-row: auto; 
-    }
-
     .box3 {
-        grid-column: 1;
         grid-row: 3;
-        max-width: 100px;
     }
 
     .box4 {
-        grid-column: auto;
-        grid-row: 3; 
+        grid-column: 2; 
     }
     .flex-container {
         flex-direction: column;
