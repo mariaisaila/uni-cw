@@ -97,6 +97,7 @@ async function fetchData(searchValue, searchField, searchTable) {
         let item1, item2, item3, item4, item5, item6, item7;
         for (let i = 0; i < data.length; i++) {
             const item = data[i];
+            console.log("Processing item index: ", i);
             if (searchTable === 'People') {
                 item1 = item.PeopleID;
                 item2 = item.Name;
