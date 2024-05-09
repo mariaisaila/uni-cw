@@ -146,19 +146,37 @@ async function fetchData(searchValue, searchField, searchTable) {
 }
 
 async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
-    const { data, error } = await supabase
+    let data, error;
+    ({ data, error } = await supabase
             .from('People')
             .select()
-            .ilike('PeopleID', `%${searchValue}%`);
+            .ilike('PeopleID', `%${searchValue}%`));
+
     if (error) {
         console.error('Error fetching data:', error);
         document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
         return;
-    } else if (data.length === 0) {
+    }
+
+    else (data.length === 0) {
         document.getElementById('message').textContent = "No result found";
+        return;
+    }
+
+    let insertError;
+    ({ error: insertError } = await supabase.from('Vehicles')
+            .insert({
+                VehicleID: plateNumber,
+                Make: vehicleMake,
+                Model: vehicleModel,
+                Colour: vehicleColour,
+                OwnerID: searchValue
+            }));
+
+    if (insertError) {
+        console.error('Error inserting data:', insertError);
+        document.getElementById('message').textContent = "Error adding vehicle, please check console for details.";
     } else {
-        const { error } = await supabase.from('People')
-            .insert({ VehicleID: plateNumber, Make: vehicleMake, Model: vehicleModel, Colour: vehicleColour, OwnerID: searchValue})
         document.getElementById('message').textContent = "Vehicle added successfully";
     }
 }
