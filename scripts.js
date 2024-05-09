@@ -150,8 +150,7 @@ async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, 
     ({ data, error } = await supabase
             .from('People')
             .select()
-            .ilike('PeopleID', `%${searchValue}%`));
-
+            .eq('PeopleID', searchValue));
     if (error) {
         console.error('Error fetching data:', error);
         document.getElementById('message').textContent = "Failed to fetch data, please check console for details.";
