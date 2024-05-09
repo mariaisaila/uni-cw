@@ -4,6 +4,32 @@ import {createClient} from
 // Initialize the client with your Supabase project URL and API key
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
+function addNewDiv() {
+    var newDiv = document.createElement('div');
+    newDiv.style.display = 'inline-block';
+    newDiv.style.margin = '5px';
+    newDiv.style.padding = '5px';
+    newDiv.style.border = '1px solid black';
+
+    var newP = document.createElement('p');
+    newP.textContent = 'Hello, this is a new div!';
+    newDiv.appendChild(newP);
+
+    // Add toggle functionality to the new div
+    /*newDiv.onclick = function() {
+        if (newDiv.style.display === 'block') {
+            newDiv.style.display = 'none';
+            newP.textContent = 'Click again to see the message!';
+        } else {
+            newDiv.style.display = 'block';
+            newP.textContent = 'Hello, this is a new div!';
+        }
+    };*/
+    
+    document.getElementById('results').appendChild(newDiv);
+
+}
+
 async function fetchData(searchValue, searchField, searchTable) {
     const { data, error } = await supabase
         .from(searchTable)
@@ -16,6 +42,7 @@ async function fetchData(searchValue, searchField, searchTable) {
     } else if (data.length === 0) {
         document.getElementById('message').textContent = "No result found";
     } else {
+        addNewDiv();
         document.getElementById('message').textContent = "Search Successful";
     }
 }
