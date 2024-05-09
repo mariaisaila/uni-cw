@@ -10,6 +10,7 @@ function addNewDiv() {
     newDiv.style.margin = '5px';
     newDiv.style.padding = '5px';
     newDiv.style.border = '1px solid black';
+    newDiv.classList.add('searchresult');
 
     var newP = document.createElement('p');
     newP.textContent = 'Hello, this is a new div!';
@@ -25,7 +26,7 @@ function addNewDiv() {
             newP.textContent = 'Hello, this is a new div!';
         }
     };*/
-    
+
     document.getElementById('results').appendChild(newDiv);
 
 }
@@ -42,7 +43,9 @@ async function fetchData(searchValue, searchField, searchTable) {
     } else if (data.length === 0) {
         document.getElementById('message').textContent = "No result found";
     } else {
-        addNewDiv();
+        for(let i = 0; i<data.length; i++){
+            addNewDiv();
+        }
         document.getElementById('message').textContent = "Search Successful";
     }
 }
@@ -89,3 +92,5 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('The element with ID "submitbutton2" was not found.');
     }
 });
+
+
