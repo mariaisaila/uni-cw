@@ -160,7 +160,6 @@ async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, 
     if (data.length === 0) {
         var form = document.querySelector('.form2');
         form.style.display = 'block';
-        console.log('Found no owner');
         return;
     }
 
@@ -179,6 +178,26 @@ async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, 
         document.getElementById('message').textContent = "Error adding vehicle, please check console for details.";
     } else {
         document.getElementById('message').textContent = "Vehicle added successfully";
+    }
+}
+
+async function addOwner(personId, ownerName, ownerAddress, ownerDob, ownerLicense, ownerExpire){
+    let insertError;
+    ({ error: insertError } = await supabase.from('People')
+            .insert({
+                PeopleID: personId,
+                Name: ownerName,
+                Address: ownerAddress,
+                DOB: ownerDob,
+                LicenseNumber: ownerLicense,
+                ExpiryDate: ownerExpire
+            }));
+
+    if (insertError) {
+        console.error('Error inserting data:', insertError);
+        document.getElementById('message').textContent = "Error adding vehicle, please check console for details.";
+    } else {
+        return;
     }
 }
 
@@ -250,5 +269,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         console.log('The element with ID "submitbutton3" was not found.');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var submitBtn = document.getElementById('submitbutton4');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+            var personId = document.getElementById('personid').value.trim();
+            var ownerName = document.getElementById('name').value.trim();
+            var ownerAddress = document.getElementById('address').value.trim();
+            var ownerDob = document.getElementById('dob').value.trim();
+            var ownerLicense = document.getElementById('license').value.trim();
+            var ownerExpire = document.getElementById('expire').value.trim();
+            console.log("Person ID:", personId);
+            console.log("Owner Name:", ownerName);
+            console.log("Owner Address:", ownerAddress);
+            console.log("Owner DOB:", ownerDob);
+            console.log("Owner License:", ownerLicense);
+            console.log("Owner Name:", ownerExpire);
+            
+            if (personId === "" || ownerName === "" || ownerAddress === "" || ownerDob === "" || ownerLicense === "" || ownerExpire=== "") {
+                document.getElementById('message').textContent = "Error";
+            }
+            else {
+                addOwner(personId, ownerName, ownerAddress, ownerDob, ownerLicense, ownerExpire); 
+            }
+        });
+    } else {
+        console.log('The element with ID "submitbutton4" was not found.');
     }
 });
