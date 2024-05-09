@@ -15,7 +15,7 @@ function toggleVisibilityByClass() {
     }
 }
 
-function addNewDiv(searchTable, item1, item2, item3, item4, item5, item6) {
+function addNewDiv(searchTable, item1, item2, item3, item4, item5, item6, item7) {
     var newDiv = document.createElement('div');
     newDiv.style.display = 'inline-block';
     newDiv.style.margin = '5px';
@@ -74,7 +74,7 @@ function addNewDiv(searchTable, item1, item2, item3, item4, item5, item6) {
         newDiv.appendChild(newP);
 
         var newP = document.createElement('p');
-        newP.textContent = 'licensenumber: ';
+        newP.textContent = 'licensenumber: ' + item7;
         newDiv.appendChild(newP);
     }
 
@@ -94,28 +94,29 @@ async function fetchData(searchValue, searchField, searchTable) {
     } else if (data.length === 0) {
         document.getElementById('message').textContent = "No result found";
     } else {
-        if(searchTable==='People'){
-        data.forEach(item => {
-            var item1 = item.PeopleID;
-            var item2 = item.Name;
-            var item3 = item.Address;
-            var item4 = item.DOB;
-            var item5 = item.LicenseNumber;
-            var item6 = item.ExpiryDate;
-        });
-        }
-        else{
-            data.forEach(item => {
-                var item1 = item.VehicleID;
-                var item2 = item.Make;
-                var item3 = item.Model;
-                var item4 = item.Colour;
-                var item5 = item.OwnerID;
-                var item6="NULL";
-            });
-        }
+        let item1, item2, item3, item4, item5, item6, item7;
+        for (let i = 0; i < data.length; i++) {
+            const item = data[i];
+            if (searchTable === 'People') {
+                item1 = item.PeopleID;
+                item2 = item.Name;
+                item3 = item.Address;
+                item4 = item.DOB;
+                item5 = item.LicenseNumber;
+                item6 = item.ExpiryDate;
+                item7 = "NULL"; 
+            } else {
+                item1 = item.VehicleID;
+                item2 = item.Make;
+                item3 = item.Model;
+                item4 = item.Colour;
+                item5 = item.OwnerID;
+                item6 = "NULL"; 
+                item7 = "NULL"; 
+            }
         for(let i = 0; i<data.length; i++){
-            addNewDiv(searchTable, item1, item2, item3, item4, item5, item6);
+            addNewDiv(searchTable, item1, item2, item3, item4, item5, item6, item7);
+        }
         }
         document.getElementById('message').textContent = "Search Successful";
     }
@@ -135,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if ((driverName === "" && licenseNumber === "") || (driverName !== "" && licenseNumber !== "")) {
             document.getElementById('message').textContent = "Error";
         } else if (driverName !== "") {
-            console.log("i'm here");
             fetchData(driverName, 'Name', 'People');
         } else {
             fetchData(licenseNumber, 'LicenseNumber', 'People'); 
