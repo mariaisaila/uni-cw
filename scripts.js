@@ -288,9 +288,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    var submitBtn = document.getElementById('submitbutton4');
-    if (submitBtn) {
-        submitBtn.addEventListener('click', function() {
+    document.body.addEventListener('click', function(event) {
+        if (event.target.id === 'submitbutton4') {
             var personId = document.getElementById('personid').value.trim();
             var ownerName = document.getElementById('name').value.trim();
             var ownerAddress = document.getElementById('address').value.trim();
@@ -310,8 +309,8 @@ document.addEventListener('DOMContentLoaded', function() {
             else {
                 addOwner(personId, ownerName, ownerAddress, ownerDob, ownerLicense, ownerExpire); 
             }
-        });
     } else {
         console.log('The element with ID "submitbutton4" was not found.');
     }
+    });
 });
