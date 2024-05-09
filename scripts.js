@@ -114,9 +114,7 @@ async function fetchData(searchValue, searchField, searchTable) {
                 item6 = "NULL"; 
                 item7 = "NULL"; 
             }
-        for(let i = 0; i<data.length; i++){
             addNewDiv(searchTable, item1, item2, item3, item4, item5, item6, item7);
-        }
         }
         document.getElementById('message').textContent = "Search Successful";
     }
