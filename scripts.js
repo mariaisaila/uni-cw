@@ -147,7 +147,7 @@ async function fetchData(searchValue, searchField, searchTable) {
 
 async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
     const { data, error } = await supabase
-            .from(People)
+            .from('People')
             .select()
             .ilike(PeopleID, `%${searchValue}%`);
     if (error) {
