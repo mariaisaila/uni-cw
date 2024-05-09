@@ -4,7 +4,14 @@ import {createClient} from
 // Initialize the client with your Supabase project URL and API key
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
-function addNewDiv() {
+function toggleVisibilityByClass() {
+    var elements = document.querySelectorAll('.' + searchresult);
+    elements.forEach(function(element) {
+            element.style.display = 'none';
+    });
+}
+
+function addNewDiv(searchTable) {
     var newDiv = document.createElement('div');
     newDiv.style.display = 'inline-block';
     newDiv.style.margin = '5px';
@@ -12,20 +19,56 @@ function addNewDiv() {
     newDiv.style.border = '1px solid black';
     newDiv.classList.add('searchresult');
 
-    var newP = document.createElement('p');
-    newP.textContent = 'Hello, this is a new div!';
-    newDiv.appendChild(newP);
+    if(searchTable==='People'){
+        var newP = document.createElement('p');
+        newP.textContent = 'personid: ';
+        newDiv.appendChild(newP);
 
-    // Add toggle functionality to the new div
-    /*newDiv.onclick = function() {
-        if (newDiv.style.display === 'block') {
-            newDiv.style.display = 'none';
-            newP.textContent = 'Click again to see the message!';
-        } else {
-            newDiv.style.display = 'block';
-            newP.textContent = 'Hello, this is a new div!';
-        }
-    };*/
+        var newP = document.createElement('p');
+        newP.textContent = 'name: ';
+        newDiv.appendChild(newP);
+        
+        var newP = document.createElement('p');
+        newP.textContent = 'dob: ';
+        newDiv.appendChild(newP);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'licensenumber: ';
+        newDiv.appendChild(newP);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'expirydate: ';
+        newDiv.appendChild(newP);
+    }
+    else{
+        var newP = document.createElement('p');
+        newP.textContent = 'vehicleid: ';
+        newDiv.appendChild(newP);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'make: ';
+        newDiv.appendChild(newP);
+        
+        var newP = document.createElement('p');
+        newP.textContent = 'model: ';
+        newDiv.appendChild(newP);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'colour: ';
+        newDiv.appendChild(newP);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'ownerid: ';
+        newDiv.appendChild(newP);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'name: ';
+        newDiv.appendChild(newP);
+
+        var newP = document.createElement('p');
+        newP.textContent = 'licensenumber: ';
+        newDiv.appendChild(newP);
+    }
 
     document.getElementById('results').appendChild(newDiv);
 
@@ -44,7 +87,7 @@ async function fetchData(searchValue, searchField, searchTable) {
         document.getElementById('message').textContent = "No result found";
     } else {
         for(let i = 0; i<data.length; i++){
-            addNewDiv();
+            addNewDiv(searchTable);
         }
         document.getElementById('message').textContent = "Search Successful";
     }
@@ -54,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var submitBtn = document.getElementById('submitbutton1');
     if (submitBtn) {
     document.getElementById('submitbutton1').addEventListener('click', function() {
+        toggleVisibilityByClass();
         var driverName = document.getElementById('name').value.trim();
         var licenseNumber = document.getElementById('license').value.trim();
     
@@ -78,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var submitBtn = document.getElementById('submitbutton2');
     if (submitBtn) {
         submitBtn.addEventListener('click', function() {
+            toggleVisibilityByClass();
             var plateNumber = document.getElementById('rego').value.trim();
             console.log("Plate number:", plateNumber);
 
