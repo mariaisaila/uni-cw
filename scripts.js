@@ -145,7 +145,7 @@ async function fetchData(searchValue, searchField, searchTable) {
     }
 }
 
-/*async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
+async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
     let data, error;
     ({ data, error } = await supabase
             .from('People')
@@ -179,7 +179,7 @@ async function fetchData(searchValue, searchField, searchTable) {
     } else {
         document.getElementById('message').textContent = "Vehicle added successfully";
     }
-}*/
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     var submitBtn = document.getElementById('submitbutton1');
@@ -243,9 +243,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (plateNumber === "" || vehicleMake === "" || vehicleModel === "" || vehicleColour === "" || vehicleOwner === "") {
                 document.getElementById('message').textContent = "Error";
             }
-            /*else {
+            else {
                 searchOwner(vehicleOwner, plateNumber, vehicleMake, vehicleModel, vehicleColour); 
-            }*/
+            }
         });
     } else {
         console.log('The element with ID "submitbutton3" was not found.');
