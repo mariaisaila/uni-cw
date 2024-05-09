@@ -6,9 +6,13 @@ const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbG
 
 function toggleVisibilityByClass() {
     var elements = document.querySelectorAll('.' + searchresult);
-    elements.forEach(function(element) {
+    if (elements.length > 0) {
+        elements.forEach(function(element) {
             element.style.display = 'none';
     });
+    } else {
+        console.log("No elements found with the class " + className);
+    }
 }
 
 function addNewDiv(searchTable) {
