@@ -145,7 +145,7 @@ async function fetchData(searchValue, searchField, searchTable) {
     }
 }
 
-async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
+/*async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, vehicleColour) {
     let data, error;
     ({ data, error } = await supabase
             .from('People')
@@ -179,7 +179,7 @@ async function searchOwner(searchValue, plateNumber, vehicleMake, vehicleModel, 
     } else {
         document.getElementById('message').textContent = "Vehicle added successfully";
     }
-}
+}*/
 
 document.addEventListener('DOMContentLoaded', function() {
     var submitBtn = document.getElementById('submitbutton1');
