@@ -1,7 +1,7 @@
 import {createClient} from 
     'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-// Initialize the client with your Supabase project URL and API key
+
 const supabase = createClient('https://nhbfxiflraidpfehybvx.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oYmZ4aWZscmFpZHBmZWh5YnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTMwNDcsImV4cCI6MjAzMDc2OTA0N30.SC4S-bA1O5iHcNijXA7N9fdUGZD2ZHyA4RrlcVIoR1g');
 
 let plateNumber, vehicleMake, vehicleModel, vehicleColour, vehicleOwner;
